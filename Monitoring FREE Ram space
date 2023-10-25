@@ -6,6 +6,7 @@
 #This script outputs the free RAM space
 ######################
 set -e
+set -x
 FREE_SPACE=$(free -mt|grep "Total"|awk  '{print$4}')
 TH=300
 if [[$FREE_SPACE -lt $TH]]
