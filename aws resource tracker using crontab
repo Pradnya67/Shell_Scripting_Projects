@@ -1,0 +1,26 @@
+#!/bin/bash 
+###################### 
+# Author : Pradnya 
+# Date : 26-10-2023 
+# #Version : v1 
+# #This script will report the aws resource usage 
+##################### 
+<<aws_resources 
+S3 
+Lambda 
+EC2 
+IAM 
+aws_resources 
+
+set -x 
+
+aws s3 ls 
+
+aws ec2 describe-instances | jq '.Reservations[].Instances[].InstanceId' 
+
+aws lambda list-functions 
+
+aws iam list-users
+
+# I executed this script using crontab
+22 19 * * * bash /home/om/projects/aws_resource_tracker.sh >> /home/om/projects/sheyi.txt
